@@ -189,8 +189,8 @@ const sendBootToBootloader = async(ip) => {
     })
 }
 
-const waitForBootloader = async(ip) => {
-    console.log("Waiting For Bootloader")
+const waitForDevice = async(ip) => {
+    console.log("Waiting For Device")
     return new Promise(async(resolve, reject) => {
         const startPinging = async() => {
             const exit = (err) => {
@@ -211,7 +211,7 @@ const waitForBootloader = async(ip) => {
 
             const timeout = setTimeout(() => {
                 exit("Timed out waiting for bootloader")
-            }, 5500);
+            }, 10000);
         }
 
 
@@ -225,7 +225,7 @@ const bootToBootloader = async(ip) => {
     return new Promise(async(resolve, reject) => {
         try {
             await sendBootToBootloader(ip)
-            await waitForBootloader(ip)
+            await waitForDevice(ip)
             resolve()
         } catch (error) {
             reject(error)
@@ -241,7 +241,7 @@ const uploadFirmware = async(ip, filePath) => {
             await sendLoad(ip, pages.length)
             await sendPages(ip, pages)
             await sendReset(ip)
-            console.log("Rows Sent", pagesSent)
+            await waitForDevice(ip)
             resolve()
         } catch (error) {
             reject(error)
