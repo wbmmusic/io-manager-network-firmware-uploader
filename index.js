@@ -260,7 +260,7 @@ tcpUploadProgress.on('tcpUploadProgress', (data) => {
     }
 })
 
-// const run = async () => {
+// const run = async() => {
 //     try {
 //         await uploadFirmware('192.168.1.15', cpFilePath)
 //     } catch (error) {
