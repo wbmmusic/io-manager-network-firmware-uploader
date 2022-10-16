@@ -260,14 +260,14 @@ tcpUploadProgress.on('tcpUploadProgress', (data) => {
     }
 })
 
-const run = async() => {
-    try {
-        await uploadFirmware('192.168.1.15', cpFilePath)
-    } catch (error) {
-        throw error
-    }
-}
+// const run = async() => {
+//     try {
+//         await uploadFirmware('192.168.1.15', cpFilePath)
+//     } catch (error) {
+//         throw error
+//     }
+// }
 
-run()
+// run()
 
-//module.exports = { uploadFirmware, tcpUploadProgress }
+module.exports = { uploadFirmware, tcpUploadProgress }
