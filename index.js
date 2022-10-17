@@ -16,6 +16,7 @@ const tcpUploadProgress = new EventEmitter
 // const file = readFileSync(join(__dirname, '..', 'Boards', 'MIDIBoard', 'MIDIBoard', 'Production', 'MIDIBoard.bin'))
 // const file = readFileSync(join(__dirname, '..', 'Boards', 'SerialBoard', 'SerialBoard', 'Production', 'SerialBoard.bin'))
 const cpFilePath = join(__dirname, '..', 'Boards', 'Control Panel', 'Control Panel', 'Production', 'Control Panel.bin')
+const apFilePath = join(__dirname, '..', 'Boards', 'Alarm Panel', 'Alarm Panel', 'Production', 'Alarm Panel.bin')
 
 let pagesSent = 0;
 
@@ -262,7 +263,7 @@ tcpUploadProgress.on('tcpUploadProgress', (data) => {
 
 // const run = async() => {
 //     try {
-//         await uploadFirmware('192.168.1.15', cpFilePath)
+//         await uploadFirmware('192.168.1.15', apFilePath)
 //     } catch (error) {
 //         throw error
 //     }
