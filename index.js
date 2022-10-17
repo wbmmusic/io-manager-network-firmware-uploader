@@ -15,8 +15,9 @@ const tcpUploadProgress = new EventEmitter
 // const file = readFileSync(join(__dirname, '..', 'Boards', 'GPIBoard', 'GPIBoard', 'Production', 'GPIBoard.bin'))
 // const file = readFileSync(join(__dirname, '..', 'Boards', 'MIDIBoard', 'MIDIBoard', 'Production', 'MIDIBoard.bin'))
 // const file = readFileSync(join(__dirname, '..', 'Boards', 'SerialBoard', 'SerialBoard', 'Production', 'SerialBoard.bin'))
-const cpFilePath = join(__dirname, '..', 'Boards', 'Control Panel', 'Control Panel', 'Production', 'Control Panel.bin')
-const apFilePath = join(__dirname, '..', 'Boards', 'Alarm Panel', 'Alarm Panel', 'Production', 'Alarm Panel.bin')
+
+// const cpFilePath = join(__dirname, '..', 'Boards', 'Control Panel', 'Control Panel', 'Production', 'Control Panel.bin')
+// const apFilePath = join(__dirname, '..', 'Boards', 'Alarm Panel', 'Alarm Panel', 'Production', 'Alarm Panel.bin')
 
 let pagesSent = 0;
 
