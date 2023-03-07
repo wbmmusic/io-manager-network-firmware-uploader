@@ -17,7 +17,7 @@ const tcpUploadProgress = new EventEmitter
 // const file = readFileSync(join(__dirname, '..', 'Boards', 'SerialBoard', 'SerialBoard', 'Production', 'SerialBoard.bin'))
 
 // const cpFilePath = join(__dirname, '..', 'Boards', 'Control Panel', 'Control Panel', 'Production', 'Control Panel.bin')
-// const apFilePath = join(__dirname, '..', 'Boards', 'Alarm Panel', 'Alarm Panel', 'Production', 'Alarm Panel.bin')
+const apFilePath = join(__dirname, '..', 'Boards', 'Alarm Panel', 'Alarm Panel', 'Production', 'Alarm Panel.bin')
 
 let pagesSent = 0;
 
@@ -57,7 +57,7 @@ const makePages = (filePath) => {
 
 // const clientOpts = { port: 11420, host: '192.168.1.15' }
 
-const sendReset = async(ip) => {
+const sendReset = async (ip) => {
     return new Promise((resolve, reject) => {
         const client = net.connect({ port: 11420, host: ip }, () => {
             // 'connect' listener.
@@ -66,7 +66,7 @@ const sendReset = async(ip) => {
 
                 if (data.toString().substring(0, 9) == "resetting") {
                     console.log("Received", data.toString())
-                        //client.write("WBM:page" + Buffer.from([pagesSent & 0xFF, (pagesSent >> 8) & 0xFF]) + Buffer.from(pages[pagesSent]))
+                    //client.write("WBM:page" + Buffer.from([pagesSent & 0xFF, (pagesSent >> 8) & 0xFF]) + Buffer.from(pages[pagesSent]))
                     client.end()
                     client.destroy()
                 }
@@ -84,7 +84,7 @@ const sendReset = async(ip) => {
     })
 }
 
-const sendLoad = async(ip, numberOfPages) => {
+const sendLoad = async (ip, numberOfPages) => {
     return new Promise((resolve, reject) => {
         const client = net.connect({ port: 11420, host: ip }, () => {
             // 'connect' listener.
@@ -111,7 +111,7 @@ const sendLoad = async(ip, numberOfPages) => {
     })
 }
 
-const sendPage = async(ip, pages) => {
+const sendPage = async (ip, pages) => {
     return new Promise((resolve, reject) => {
         const sendThis = new Buffer.from(pages[pagesSent])
         let res = "error"
@@ -146,10 +146,10 @@ const sendPage = async(ip, pages) => {
     })
 }
 
-const sendPages = async(ip, pages) => {
+const sendPages = async (ip, pages) => {
     pagesSent = 0;
     const numberOfPages = pages.length
-    await pages.reduce(async(acc, NULL, idx) => {
+    await pages.reduce(async (acc, NULL, idx) => {
         await acc
         const result = await sendPage(ip, pages)
         if (result !== "Match") {
@@ -165,8 +165,8 @@ const sendPages = async(ip, pages) => {
     }, Promise.resolve([]))
 }
 
-const sendBootToBootloader = async(ip) => {
-    return new Promise(async(resolve, reject) => {
+const sendBootToBootloader = async (ip) => {
+    return new Promise(async (resolve, reject) => {
         let pass = false
 
         const client = net.connect({ port: 11420, host: ip }, () => {
@@ -191,10 +191,10 @@ const sendBootToBootloader = async(ip) => {
     })
 }
 
-const waitForDevice = async(ip) => {
+const waitForDevice = async (ip) => {
     console.log("Waiting For Device")
-    return new Promise(async(resolve, reject) => {
-        const startPinging = async() => {
+    return new Promise(async (resolve, reject) => {
+        const startPinging = async () => {
             const exit = (err) => {
                 console.log("IN EXIT")
                 clearInterval(pingInterval)
@@ -223,8 +223,8 @@ const waitForDevice = async(ip) => {
     })
 }
 
-const bootToBootloader = async(ip) => {
-    return new Promise(async(resolve, reject) => {
+const bootToBootloader = async (ip) => {
+    return new Promise(async (resolve, reject) => {
         try {
             await sendBootToBootloader(ip)
             await waitForDevice(ip)
@@ -235,8 +235,8 @@ const bootToBootloader = async(ip) => {
     })
 }
 
-const uploadFirmware = async(ip, filePath) => {
-    return new Promise(async(resolve, reject) => {
+const uploadFirmware = async (ip, filePath) => {
+    return new Promise(async (resolve, reject) => {
         try {
             const pages = makePages(filePath)
             await bootToBootloader(ip)
@@ -262,9 +262,9 @@ tcpUploadProgress.on('tcpUploadProgress', (data) => {
     }
 })
 
-// const run = async() => {
+// const run = async () => {
 //     try {
-//         await uploadFirmware('192.168.1.15', apFilePath)
+//         await uploadFirmware('192.168.1.52', apFilePath)
 //     } catch (error) {
 //         throw error
 //     }
