@@ -9,15 +9,15 @@ importers:
   .:
     dependencies:
       ping:
-        specifier: ^0.4.2
-        version: 0.4.4
+        specifier: ^1.0.0
+        version: 1.0.0
 
 packages:
 
-  ping@0.4.4:
-    resolution: {integrity: sha512-56ZMC0j7SCsMMLdOoUg12VZCfj/+ZO+yfOSjaNCRrmZZr6GLbN2X/Ui56T15dI8NhiHckaw5X2pvyfAomanwqQ==}
-    engines: {node: '>=4.0.0'}
+  ping@1.0.0:
+    resolution: {integrity: sha512-3dxdgGtV+7P/EVo42JhkGSomeO/0GGicSz3mI/yK+AI+VGNAOfakw5XfcbGI4IjyBY+ZZwvuRXdhnNF2uliKew==}
+    engines: {node: '>=22.0.0'}
 
 snapshots:
 
-  ping@0.4.4: {}
+  ping@1.0.0: {}
